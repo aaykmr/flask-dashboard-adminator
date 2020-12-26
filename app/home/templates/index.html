@@ -102,25 +102,78 @@
                     <input type="number" class="form-control" id="validationCustom01" placeholder="" value="" required>
                 </div>
                 </div>
-                <button class="btn btn-primary" type="submit">Submit form</button>
+                <button class="btn btn-primary" type="submit">Submit</button>
             </form>
-            <script>
-                // Example starter JavaScript for disabling form submissions if there are invalid fields
-                (function() {
-                'use strict';
+            
+            <div class="w-100 gap-10 peers mY-20">
+              <table style="width:100%;" >
+                <tr>
+                  <td><button type="button" value=7 onclick="entry(7)" style="font-size: 2rem; width:100%;" class="btn cur-p btn-outline-dark">7</button></td>
+                  <td><button type="button" value=8 onclick="entry(8)" style="font-size: 2rem; width:100%;" class="btn cur-p btn-outline-dark">8</button></td>
+                  <td><button type="button" value=9 onclick="entry(9)" style="font-size: 2rem; width:100%;" class="btn cur-p btn-outline-dark">9</button></td>
+                </tr>
+                <tr>
+                  <td><button type="button" value=4 onclick="entry(4)" style="font-size: 2rem; width:100%;" class="btn cur-p btn-outline-dark">4</button></td>
+                  <td><button type="button" value=5 onclick="entry(5)" style="font-size: 2rem; width:100%;" class="btn cur-p btn-outline-dark">5</button></td>
+                  <td><button type="button" value=6 onclick="entry(6)" style="font-size: 2rem; width:100%;" class="btn cur-p btn-outline-dark">6</button></td>
+                </tr>
+                <tr>
+                  <td><button type="button" value=1 onclick="entry(1)" style="font-size: 2rem; width:100%;" class="btn cur-p btn-outline-dark">1</button></td>
+                  <td><button type="button" value=2 onclick="entry(2)" style="font-size: 2rem; width:100%;" class="btn cur-p btn-outline-dark">2</button></td>
+                  <td><button type="button" value=3 onclick="entry(3)" style="font-size: 2rem; width:100%;" class="btn cur-p btn-outline-dark">3</button></td>
+                </tr>
+                <tr>
+                  <td colspan="2" ><button type="button" value=0 onclick="entry(0)" style="font-size: 2rem; width:100%;" class="btn cur-p btn-outline-dark">0</button></td>
+                  <td><button type="button" onclick="backspace()" style="font-size: 2rem; width:100%;" class="btn cur-p btn-outline-danger"><</button></td>
+                  
+                </tr>
 
-                window.addEventListener('load', function() {
-                    var form = document.getElementById('needs-validation');
-                    form.addEventListener('submit', function(event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                    }, false);
-                }, false);
-                })();
+              </table>
+
+            </div>
+            <script>
+              function entry(val) 
+              { 
+                document.getElementById("validationCustom01").value=document.getElementById("validationCustom01").value*10+val 
+              } 
+              
+              //function that evaluates the digit and return result 
+              function backspace() 
+              { 
+                document.getElementById("validationCustom01").value = Math.floor(document.getElementById("validationCustom01").value/10)
+              } 
+              
+              //function that clear the display 
+              function clr() 
+              { 
+                document.getElementById("validationCustom01").value = "" 
+              } 
+              // Example starter JavaScript for disabling form submissions if there are invalid fields
+              (function() {
+              'use strict';
+
+              window.addEventListener('load', function() {
+                  var form = document.getElementById('needs-validation');
+                  
+
+                  form.addEventListener('submit', function(event) {
+                  var barcode = document.getElementById('validationCustom01')
+                  console.log("Form VALUE")
+                  console.log(document.getElementById('validationCustom01').value)
+                  if(barcode.value === "0"){
+                    barcode.setCustomValidity("Invalid");
+                    barcode.reportValidity();
+                  }
+                  if (form.checkValidity() === false ) {
+                      event.preventDefault();
+                      event.stopPropagation();
+                  }
+                  form.classList.add('was-validated');
+                  }, false);
+              }, false);
+              })();
             </script>
+
             </div>
         </div>
       </div>
